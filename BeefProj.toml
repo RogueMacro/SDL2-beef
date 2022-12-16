@@ -1,5 +1,9 @@
 FileVersion = 1
 
+[Project]
+Name = "SDL2"
+TargetType = "BeefLib"
+
 [Dependencies]
 corlib = "*"
 
