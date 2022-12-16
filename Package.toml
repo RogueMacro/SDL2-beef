@@ -1,4 +1,4 @@
 [Package]
 Name = "SDL2"
-Version = "0.1.0"
+Version = "0.1.1"
 Description = "SDL2 wrapper for Beef"
