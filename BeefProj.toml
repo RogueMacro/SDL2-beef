@@ -3,8 +3,29 @@ FileVersion = 1
 [Dependencies]
 corlib = "*"
 
-[Project]
-Name = "SDL2"
-TargetType = "BeefLib"
-StartupObject = "SDL2.Program"
-ProcessorMacros = []
+[Configs.Debug.Win64]
+LibPaths = [
+    "$(ProjectDir)/dist/SDL2.lib",
+    "$(ProjectDir)/dist/SDL2_ttf.lib",
+    "$(ProjectDir)/dist/SDL2_image.lib",
+    "$(ProjectDir)/dist/SDL2_mixer.lib"
+]
+PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/dist/*.dll\")"]
+
+[Configs.Debug.Linux64]
+OtherLinkFlags = "$(LinkFlags) -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer"
+
+[Configs.Debug.wasm32]
+PreprocessorMacros = ["DEBUG", "NOTTF"]
+
+[Configs.Release.Win64]
+LibPaths = [
+    "$(ProjectDir)/dist/SDL2.lib",
+    "$(ProjectDir)/dist/SDL2_ttf.lib",
+    "$(ProjectDir)/dist/SDL2_image.lib",
+    "$(ProjectDir)/dist/SDL2_mixer.lib"
+]
+PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/dist/*.dll\")"]
+
+[Configs.Release.Linux64]
+OtherLinkFlags = "$(LinkFlags) -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer"
